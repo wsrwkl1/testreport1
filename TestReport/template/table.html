@@ -1,0 +1,206 @@
+<div class="power_3_col right_section">
+  	<h1>最新更新数据</h1>
+    {% if selecttemp = "BatteryLife" %}
+    	<p>{{product}}在{{Version}}版本上的续航测试结果如下表：</p>
+    	<table border=10 bordercolor="#006803" align="left" bgcolor="#DDFFDD" width=500 height="200"bordercolorlight="#FFFFCC" bordercolordark="#660000" cellspacing="2" cellpadding="8"> 
+			<tr>
+		  		<th> 版本 </th>
+		  		{% for Version in VersionList%}
+		    	<td>{{ Version }}</td>
+		    	{% endfor %}
+			</tr>
+	  		<tr>
+	        	<th>游戏</th>
+	      		{% for Game in GameList%}	
+	      		<td> {{ Game }}%</td>
+	      		{% endfor %}
+	  		</tr>
+		  	<tr>
+		      	<th> 音乐</th>
+		      	{% for Music in MusicList%}
+		      	<td> {{ Music }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th> 播放视频 </th>
+		      	{% for PlayVideo in PlayVideoList%}
+		      	<td> {{ PlayVideo }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th> 读书</th>
+		      	{% for ReadBook in ReadBookList%}
+		      	<td> {{ ReadBook }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th> 微博 </th>
+		      	{% for WeiBO in WeiBOList%}
+		      	<td> {{ WeiBO }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th> 电话呼出</th>
+		      	{% for CallMO in CallMOList%}
+		      	<td> {{ CallMO }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th>浏览器 </th>
+		      	{% for Brower in BrowerList%}
+		      	<td> {{ Brower }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th> 相机 </th>
+		      	{% for Camera in CameraList%}
+		      	<td> {{ Camera }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th>剩余</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		</table>
+    {% endif %}
+    {% if selecttemp = "Current" %}
+    	<p>{{product}}在{{Version}}版本上的电流测试果如下表：</p>
+    	<table border=10 bordercolor="#006803" align="left" bgcolor="#DDFFDD" width=500 height="200"bordercolorlight="#FFFFCC" bordercolordark="#660000" cellspacing="2" cellpadding="8"> 
+			<tr>
+		  		<th> 版本 </th>
+		  		{% for Version in VersionList%}
+		    	<td>{{ Version }}</td>
+		    	{% endfor %}
+			</tr>
+	  		<tr>
+	        	<th>2G网络打电话</th>
+	      		{% for Game in GameList%}	
+	      		<td> {{ Game }}%</td>
+	      		{% endfor %}
+	  		</tr>
+		  	<tr>
+		      	<th> 3G网络打电话</th>
+		      	{% for Music in MusicList%}
+		      	<td> {{ Music }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th> 亮屏飞行模式待机</th>
+		      	{% for PlayVideo in PlayVideoList%}
+		      	<td> {{ PlayVideo }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th>3G网络待机</th>
+		      	{% for ReadBook in ReadBookList%}
+		      	<td> {{ ReadBook }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th> 无SIM卡待机 </th>
+		      	{% for WeiBO in WeiBOList%}
+		      	<td> {{ WeiBO }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th>飞行模式待机</th>
+		      	{% for CallMO in CallMOList%}
+		      	<td> {{ CallMO }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th>打开WLAN不联网 </th>
+		      	{% for Brower in BrowerList%}
+		      	<td> {{ Brower }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th>打开WLAN连接2.4G网络 </th>
+		      	{% for Camera in CameraList%}
+		      	<td> {{ Camera }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th>打开WLAN连接5G网络</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>打开BT不连外设</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>打开BT连接外设</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>播放本地视频</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>游戏(切水果)</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>主屏滑动</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>联系人滑动</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>浏览器滑动</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>打开防抖录制视频</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>关闭防抖录制视频</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>播放录制视频</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>  
+		  	<tr>
+		      	<th>播放音乐</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		  	<tr>
+		      	<th>录音</th>
+		      	{% for Remain in RemainList%}
+		      	<td> {{ Remain }}%</td>
+		      	{% endfor %}
+		  	</tr>
+		</table>
+    {% endif %}
+    <div id="chartdiv" style="width: 100%; height: 580px;"></div>
+</div>

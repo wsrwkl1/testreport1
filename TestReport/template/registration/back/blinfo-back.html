@@ -1,0 +1,187 @@
+{% extends "basepage.html" %}
+
+{% block title %} 电池续航测试 {% endblock %} 
+
+{% block script %}
+<script src="/medias/amcharts/amcharts.js" type="text/javascript"></script>          
+    <script type="text/javascript">
+        var chart;
+        var legend;
+
+        var chartData = [{
+            variety: "Game",
+            value: {{ Game }}
+        }, {
+            variety: "Music",
+            value: {{Music}}
+        }, {
+            variety: "PlayVideo",
+            value: {{PlayVideo}}
+        }, {
+            variety: "ReadBook",
+            value: {{ReadBook}}
+        }, {
+            variety: "WeiBO",
+            value: {{WeiBO}}
+        }, {
+            variety: "CallMO",
+            value: {{CallMO}}
+        }, {
+            variety: "Brower",
+            value: {{Brower}}
+        },{
+            variety: "Camera",
+            value: {{Camera}}
+        },{
+            variety: "Remain",
+            value: {{Remain}}
+        }];
+
+        AmCharts.ready(function () {
+            // PIE CHART
+            chart = new AmCharts.AmPieChart();
+            chart.dataProvider = chartData;
+            chart.titleField = "variety";
+            chart.valueField = "value";
+            chart.outlineColor = "#FFFFFF";
+            chart.outlineAlpha = 0.8;
+            chart.outlineThickness = 2;
+
+            // WRITE
+            chart.write("chartdiv");
+        });
+                
+        function setVer(){				
+			id=document.getElementById("version");
+				if(id.checked==true){
+					bversion.VALUE=id.VALUE;
+				}else{
+					bversion.VALUE=None;
+				}				
+		}
+		
+	//定义了产品的二维数组，里面的顺序跟省份的顺序是相同的。通过selectedIndex获得省份的下标值来得到相应的城市数组   
+	var produ=[   
+		{{mi2slist|safe}},   
+		{{mi2alist|safe}}, 
+		{{mi3list|safe}}
+		]; 
+	function getPro(){   
+		//获得产品下拉框的对象   
+		var sltproduct=document.form1.product;   
+		//获得版本下拉框的对象   
+		var sltversion0=document.form1.version0;
+		//获得版本下拉框的对象   
+		var sltversion1=document.form1.version1;   
+		//得到对应产品的版本数组   
+		var proversion=produ[sltproduct.selectedIndex - 1];   
+		//清空版本下拉框，仅留提示选项   
+		sltversion0.length=1;  
+		sltversion1.length=1;  
+		//将产品数组中的值填充到版本下拉框中   
+		for(var i=0;i<proversion.length;i++){   
+			sltversion0[i+1]=new Option(proversion[i],proversion[i]);
+			sltversion1[i+1]=new Option(proversion[i],proversion[i]);   
+		}   
+	}   
+	function check(){
+		//获取id为select0的 selet
+		var obj0 = document.getElementById('select0');
+		text0=obj0.options[obj0.selectedIndex].text;
+		//alert(obj0)
+		var obj1 = document.getElementById('select1');
+		text1=obj1.options[obj1.selectedIndex].text;
+		//alert(obj1)
+		if (text0 == text1){
+			alert("请选择不同版本进行比较");
+		}
+	}
+</script>    
+{% endblock %}
+
+{% block middle_container%}
+<div id="power_middle_section">
+	<div class="power_container">
+		<div id="power_content">
+	    	<div class="power_3_col left_section">
+	      		<div>
+			        <form action="/blsearch/" method="get">
+				    	<h2>请选择对应产品：</h2>
+				    	<div class="radio">
+						<INPUT TYPE=radio NAME=product id="mi2s" VALUE=mi2s/>MI 2S<br>
+						<INPUT TYPE=radio NAME=product id="mi2a" VALUE=mi2a/>MI 2A<br>
+						<INPUT TYPE=radio NAME=product id="mi3" VALUE=mi3/>MI 3<br>
+						</div>
+				        <input type="submit" value="Search">
+				    </form>
+				</div>
+			   	<div>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+			   	</div>
+			   	<div>
+			   		<form action='/blComReasult/'  method="get" name="form1">
+    					<h5>请选择所要对比的产品及版本：</h5>
+    					<div>
+    					<select name="product" size="1" onChange="getPro()">
+    					<option value="">请选择所要对比的产品</option>
+    					<option value="mi2s">Mi2s</option>
+    					<option value="mi2a">Mi2a</option>
+    					<option value="mi3">Mi3</option>
+    					</SELECT>
+				</div>
+				<div>
+				   	<p></p>
+				   	<p></p>
+				   	<p></p>
+				   	<p></p>
+			   	</div>
+				<div>
+					<SELECT NAME="version0" size="1"  id="select0" onChange="check()">   
+					<OPTION VALUE="0">请选择所对比的第一个版本 </OPTION>
+					</SELECT>		
+				</div>
+				<div>
+				   	<p></p>
+				   	<p></p>
+				   	<p></p>
+				   	<p></p>
+			   	</div>
+        		<div>
+					<SELECT NAME="version1" size="1"  id="select1" onChange="check()">   
+					<OPTION VALUE="0">请选择所对比的第二个版本  </OPTION>
+					</SELECT>		
+				</div>
+				<div>
+				   	<p></p>
+				   	<p></p>
+				   	<p></p>
+				   	<p></p>
+			   	</div>
+					<input type="submit" value="Search">
+    				</form>
+		        </div>			   
+	      	</div>
+	      	<div class="power_3_col right_section">
+	      		<h4>测试条件如下图所示</h4>
+	      		<div style="width:599px;height:175px;border:0px solid black;text-align:center;">
+	      			<img src="/medias/images/bl_middle_right_top.png" width="599"; height="175"/>
+	      		</div>
+	      		<p></p>
+	      		{% if error = True %}
+				    <h1 style="color: red;">{{info}}</h1>
+				{% else %}
+					<h4>{{product}}的{{variety}}最近更新的结果如下图</h4>
+				{% endif %}
+				
+	        	<div id="chartdiv" style="width: 100%; height: 400px;"></div>
+	      	</div>
+	      	<div class="cleaner"></div>
+	   	</div>
+	</div>
+	<!-- End Of Container  -->
+</div>
+<!-- End Of Middle Section  -->
+{% endblock %}

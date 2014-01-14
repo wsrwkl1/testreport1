@@ -1,0 +1,247 @@
+{% extends "basepage.html" %}
+
+{% block title %} 电池续航测试 {% endblock %} 
+
+{% block script %}
+<script src="/medias/amcharts/amcharts.js" type="text/javascript"></script>          
+<script type="text/javascript">
+    var chart;
+
+    var chartData = [
+    {% for result in result_list %}
+    {
+        Version: "{{result.Version}}",
+        Game: {{result.Game}},
+        Music: {{result.Music}},
+        PlayVideo: {{result.PlayVideo}},
+        ReadBook: {{result.ReadBook}},
+        WeiBO: {{result.WeiBO}},
+        CallMO: {{result.CallMO}},
+        Brower: {{result.Brower}},
+        Camera: {{result.Camera}},
+        Remain: {{result.Remain}}
+    },
+    {% endfor %}
+    ];
+
+    AmCharts.ready(function () {
+        // SERIAL CHART
+        chart = new AmCharts.AmSerialChart();
+        chart.dataProvider = chartData;
+        chart.categoryField = "Version";
+
+        // sometimes we need to set margins manually
+        // autoMargins should be set to false in order chart to use custom margin values
+        chart.autoMargins = false;
+        chart.marginLeft = 0;
+        chart.marginRight = 0;
+        chart.marginTop = 30;
+        chart.marginBottom = 40;
+
+        // AXES
+        // category
+        var categoryAxis = chart.categoryAxis;
+        categoryAxis.gridAlpha = 0;
+        categoryAxis.axisAlpha = 0;
+        categoryAxis.gridPosition = "start";
+
+        // value				                
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.stackType = "100%"; // this line makes the chart 100% stacked
+        valueAxis.gridAlpha = 0;
+        valueAxis.axisAlpha = 0;
+        valueAxis.labelsEnabled = false;
+        chart.addValueAxis(valueAxis);
+
+        // GRAPHS
+        // first graph                          
+        var graph = new AmCharts.AmGraph();
+        graph.title = "Game";
+        graph.labelText = "[[percents]]%";
+        graph.balloonText = "玩游戏0.5小时耗电为[[percents]]%";
+        graph.valueField = "Game";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.lineColor = "#C72C95";
+        chart.addGraph(graph);
+
+        // second graph              
+        var graph = new AmCharts.AmGraph();
+        graph.title = "Music";
+        graph.labelText = "[[percents]]%";
+        graph.balloonText = "播放音乐1小时耗电为[[percents]]%";
+        graph.valueField = "Music";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.lineColor = "#D8E0BD";
+        chart.addGraph(graph);
+
+        // third graph              
+        var graph = new AmCharts.AmGraph();
+        graph.title = "PlayVideo";
+        graph.labelText = "[[percents]]%";
+        graph.balloonText = "播放本地视频0.5小时耗电为[[percents]]%";
+        graph.valueField = "PlayVideo";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.lineColor = "#B3DBD4";
+        chart.addGraph(graph);
+
+        // fourth graph
+        var graph = new AmCharts.AmGraph();
+        graph.title = "ReadBook";
+        graph.labelText = "[[percents]]%";
+        graph.balloonText = "看电子书0.5小时耗电为[[percents]]%";
+        graph.valueField = "ReadBook";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.lineColor = "#69A55C";
+        chart.addGraph(graph);
+
+        // fifth graph  
+        var graph = new AmCharts.AmGraph();
+        graph.title = "WeiBO";
+        graph.labelText = "[[percents]]%";
+        graph.balloonText = "刷微博1小时耗电为[[percents]]%";
+        graph.valueField = "WeiBO";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.lineColor = "#B5B8D3";
+        chart.addGraph(graph);
+
+        // sixth graph
+        var graph = new AmCharts.AmGraph();
+        graph.title = "CallMO";
+        graph.labelText = "[[percents]]%";
+        graph.balloonText = "3G或4G通话0.5小时耗电为[[percents]]%";
+        graph.valueField = "CallMO";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.lineColor = "#F4E23B";
+        chart.addGraph(graph);
+		
+		// seventh graph
+		var graph = new AmCharts.AmGraph();
+        graph.title = "Brower";
+        graph.labelText = "[[percents]]%";
+        graph.balloonText = "浏览网页0.5小时耗电为[[percents]]%";
+        graph.valueField = "Brower";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.lineColor = "#8A2BE2";
+        chart.addGraph(graph);
+		
+		// eighth graph
+		var graph = new AmCharts.AmGraph();
+        graph.title = "Camera";
+        graph.labelText = "[[percents]]%";
+        graph.balloonText = "拍照0.5小时耗电为[[percents]]%";
+        graph.valueField = "Camera";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.lineColor = "#EEB422";
+        chart.addGraph(graph);
+		
+		// ninth graph
+		var graph = new AmCharts.AmGraph();
+        graph.title = "Remain";
+        graph.labelText = "[[percents]]%";
+        graph.balloonText = "测试结束后剩余电量为[[percents]]%";
+        graph.valueField = "Remain";
+        graph.type = "column";
+        graph.lineAlpha = 0;
+        graph.fillAlphas = 1;
+        graph.lineColor = "#FF0000";
+        chart.addGraph(graph);
+		
+        // LEGEND                  
+        var legend = new AmCharts.AmLegend();
+        legend.borderAlpha = 0.2;
+        legend.horizontalGap = 10;
+        legend.autoMargins = false;
+        legend.marginLeft = 20;
+        legend.marginRight = 20;
+        legend.switchType = "v";
+        chart.addLegend(legend);
+
+        // WRITE                  
+        chart.write("chartdiv");
+    });
+
+    // this method makes chart 2D/3D
+    function setDepth() {
+        if (document.getElementById("rb1").checked) {
+            chart.depth3D = 0;
+            chart.angle = 0;
+        } else {
+            chart.depth3D = 25;
+            chart.angle = 30;
+        }
+        chart.validateNow();
+    }
+    
+    function setVer(){				
+		id=document.getElementById("version");
+			if(id.checked==true){
+				bversion.VALUE=id.VALUE;
+			}else{
+				bversion.VALUE=None;
+			}				
+	}
+	
+	//定义了产品的二维数组，里面的顺序跟省份的顺序是相同的。通过selectedIndex获得省份的下标值来得到相应的城市数组   
+	var produ=[   
+		{{mi2slist|safe}},   
+		{{mi2alist|safe}}, 
+		{{mi3wlist|safe}},
+		{{mi3tdlist|safe}}
+		]; 
+	function getPro(){   
+		//获得产品下拉框的对象   
+		var sltproduct0=document.form1.product0; 
+		var sltproduct1=document.form1.product1;   
+		//获得版本下拉框的对象   
+		var sltversion0=document.form1.version0;
+		//获得版本下拉框的对象   
+		var sltversion1=document.form1.version1;   
+		//得到对应产品的版本数组   
+		var proversion0=produ[sltproduct0.selectedIndex - 1];   
+		var proversion1=produ[sltproduct1.selectedIndex - 1];   
+		//清空版本下拉框，仅留提示选项   
+		sltversion0.length=1;  
+		sltversion1.length=1;  
+		//将产品数组中的值填充到版本下拉框中   
+		for(var i=0;i<proversion0.length;i++){   
+			sltversion0[i+1]=new Option(proversion0[i],proversion0[i]);
+		} 
+		for(var i=0;i<proversion1.length;i++){   
+			sltversion1[i+1]=new Option(proversion1[i],proversion1[i]);
+		}  
+	}   
+</script>    
+{% endblock %}
+
+{% block middle_right_section%}
+<div class="power_3_col right_section">
+	{% if error = True %}
+		<script type="text/javascript">
+			alert("{{info}}");
+			window.location.href='/blinfo/'
+		</script>
+	{% else %}
+		<p>{{product0}}_{{version0}} VS {{product1}}_{{version1}}结果</p>
+	{% endif %}
+	<div id="chartdiv" style="width: 600px; height: 400px;"></div>
+	<div id="chartdiv" style="margin-left:15px; margin-top:10px;">
+		<input type="radio" checked="true" name="group" id="rb1" onclick="setDepth()">2D
+		<input type="radio" name="group" id="rb2" onclick="setDepth()">3D</div>
+</div>
+{% endblock %}

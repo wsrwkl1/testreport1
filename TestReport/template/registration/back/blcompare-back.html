@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test Report Result</title>
+<link rel="stylesheet" href="/medias/power_style.css" type="text/css" />
+
+    <script src="/medias/amcharts/amcharts.js" type="text/javascript"></script>          
+    <script type="text/javascript">
+    	var chart;
+
+        var chartData = [
+        {% for sear_result in sear_result_list %}
+        {
+            Version: "{{sear_result.Version}}",
+            Game: {{sear_result.Game}},
+            Music: {{sear_result.Music}},
+            PlayVideo: {{sear_result.PlayVideo}},
+            ReadBook: {{sear_result.ReadBook}},
+            WeiBO: {{sear_result.WeiBO}},
+            CallMO: {{sear_result.CallMO}},
+            Brower: {{sear_result.Brower}},
+            Camera: {{sear_result.Camera}},
+            Remain: {{sear_result.Remain}}
+        },
+        {% endfor %}
+        ];
+
+        AmCharts.ready(function () {
+            // SERIAL CHART
+            chart = new AmCharts.AmSerialChart();
+            chart.dataProvider = chartData;
+            chart.categoryField = "Version";
+
+            // sometimes we need to set margins manually
+            // autoMargins should be set to false in order chart to use custom margin values
+            chart.autoMargins = false;
+            chart.marginLeft = 0;
+            chart.marginRight = 0;
+            chart.marginTop = 30;
+            chart.marginBottom = 40;
+
+            // AXES
+            // category
+            var categoryAxis = chart.categoryAxis;
+            categoryAxis.gridAlpha = 0;
+            categoryAxis.axisAlpha = 0;
+            categoryAxis.gridPosition = "start";
+
+            // value				                
+            var valueAxis = new AmCharts.ValueAxis();
+            valueAxis.stackType = "100%"; // this line makes the chart 100% stacked
+            valueAxis.gridAlpha = 0;
+            valueAxis.axisAlpha = 0;
+            valueAxis.labelsEnabled = false;
+            chart.addValueAxis(valueAxis);
+
+            // GRAPHS
+            // first graph                          
+            var graph = new AmCharts.AmGraph();
+            graph.title = "Game";
+            graph.labelText = "[[percents]]%";
+            graph.balloonText = "[[value]] ([[percents]]%)";
+            graph.valueField = "Game";
+            graph.type = "column";
+            graph.lineAlpha = 0;
+            graph.fillAlphas = 1;
+            graph.lineColor = "#C72C95";
+            chart.addGraph(graph);
+
+            // second graph              
+            var graph = new AmCharts.AmGraph();
+            graph.title = "Music";
+            graph.labelText = "[[percents]]%";
+            graph.balloonText = "[[value]] ([[percents]]%)";
+            graph.valueField = "Music";
+            graph.type = "column";
+            graph.lineAlpha = 0;
+            graph.fillAlphas = 1;
+            graph.lineColor = "#D8E0BD";
+            chart.addGraph(graph);
+
+            // third graph              
+            var graph = new AmCharts.AmGraph();
+            graph.title = "PlayVideo";
+            graph.labelText = "[[percents]]%";
+            graph.balloonText = "[[value]] ([[percents]]%)";
+            graph.valueField = "PlayVideo";
+            graph.type = "column";
+            graph.lineAlpha = 0;
+            graph.fillAlphas = 1;
+            graph.lineColor = "#B3DBD4";
+            chart.addGraph(graph);
+
+            // fourth graph
+            var graph = new AmCharts.AmGraph();
+            graph.title = "ReadBook";
+            graph.labelText = "[[percents]]%";
+            graph.balloonText = "[[value]] ([[percents]]%)";
+            graph.valueField = "ReadBook";
+            graph.type = "column";
+            graph.lineAlpha = 0;
+            graph.fillAlphas = 1;
+            graph.lineColor = "#69A55C";
+            chart.addGraph(graph);
+
+            // fifth graph  
+            var graph = new AmCharts.AmGraph();
+            graph.title = "WeiBO";
+            graph.labelText = "[[percents]]%";
+            graph.balloonText = "[[value]] ([[percents]]%)";
+            graph.valueField = "WeiBO";
+            graph.type = "column";
+            graph.lineAlpha = 0;
+            graph.fillAlphas = 1;
+            graph.lineColor = "#B5B8D3";
+            chart.addGraph(graph);
+
+            // sixth graph
+            var graph = new AmCharts.AmGraph();
+            graph.title = "CallMO";
+            graph.labelText = "[[percents]]%";
+            graph.balloonText = "[[value]] ([[percents]]%)";
+            graph.valueField = "CallMO";
+            graph.type = "column";
+            graph.lineAlpha = 0;
+            graph.fillAlphas = 1;
+            graph.lineColor = "#F4E23B";
+            chart.addGraph(graph);
+			
+			// seventh graph
+			var graph = new AmCharts.AmGraph();
+            graph.title = "Brower";
+            graph.labelText = "[[percents]]%";
+            graph.balloonText = "[[value]] ([[percents]]%)";
+            graph.valueField = "Brower";
+            graph.type = "column";
+            graph.lineAlpha = 0;
+            graph.fillAlphas = 1;
+            graph.lineColor = "#8A2BE2";
+            chart.addGraph(graph);
+			
+			// eighth graph
+			var graph = new AmCharts.AmGraph();
+            graph.title = "Camera";
+            graph.labelText = "[[percents]]%";
+            graph.balloonText = "[[value]] ([[percents]]%)";
+            graph.valueField = "Camera";
+            graph.type = "column";
+            graph.lineAlpha = 0;
+            graph.fillAlphas = 1;
+            graph.lineColor = "#EEB422";
+            chart.addGraph(graph);
+			
+			// ninth graph
+			var graph = new AmCharts.AmGraph();
+            graph.title = "Remain";
+            graph.labelText = "[[percents]]%";
+            graph.balloonText = "[[value]] ([[percents]]%)";
+            graph.valueField = "Remain";
+            graph.type = "column";
+            graph.lineAlpha = 0;
+            graph.fillAlphas = 1;
+            graph.lineColor = "#FF0000";
+            chart.addGraph(graph);
+			
+            // LEGEND                  
+            var legend = new AmCharts.AmLegend();
+            legend.borderAlpha = 0.2;
+            legend.horizontalGap = 10;
+            legend.autoMargins = false;
+            legend.marginLeft = 20;
+            legend.marginRight = 20;
+            legend.switchType = "v";
+            chart.addLegend(legend);
+
+            // WRITE                  
+            chart.write("chartdiv");
+        });
+
+        // this method makes chart 2D/3D
+        function setDepth() {
+            if (document.getElementById("rb1").checked) {
+                chart.depth3D = 0;
+                chart.angle = 0;
+            } else {
+                chart.depth3D = 25;
+                chart.angle = 30;
+            }
+            chart.validateNow();
+        }
+        
+        function setVer(){				
+			id=document.getElementById("version");
+				if(id.checked==true){
+					bversion.VALUE=id.VALUE;
+				}else{
+					bversion.VALUE=None;
+				}				
+		}
+    
+    //定义了产品的二维数组，里面的顺序跟省份的顺序是相同的。通过selectedIndex获得省份的下标值来得到相应的城市数组   
+	var produ=[   
+		{{mi2slist|safe}},   
+		{{mi2alist|safe}}, 
+		{{mi3list|safe}}
+		]; 
+	function getPro(){   
+		//获得产品下拉框的对象   
+		var sltproduct=document.form1.product;   
+		//获得版本下拉框的对象   
+		var sltversion0=document.form1.version0;
+		//获得版本下拉框的对象   
+		var sltversion1=document.form1.version1;   
+		//得到对应产品的版本数组   
+		var proversion=produ[sltproduct.selectedIndex - 1];   
+		//清空版本下拉框，仅留提示选项   
+		sltversion0.length=1;  
+		sltversion1.length=1;  
+		//将产品数组中的值填充到版本下拉框中   
+		for(var i=0;i<proversion.length;i++){   
+			sltversion0[i+1]=new Option(proversion[i],proversion[i]);
+			sltversion1[i+1]=new Option(proversion[i],proversion[i]);   
+		}   
+	}   
+    </script>
+</head>
+<body>
+	<div id="power_top_section">
+	  <div class="power_container">
+	    <div id="power_header">
+	      <div id="power_logo_area">
+	        <h2>Test Report</h2>
+	      </div>
+	      <div id="power_header_right">
+	        <h2></h2>
+	        <p></p>
+	      </div>
+	      <div class="cleaner"></div>
+	      <div id="power_menu">
+	        <ul>
+	          <li class="current"> <a href='/home/'>首页</a>
+	            <p>start here</p>
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li class="last">
+	          </li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+	  <!-- End Of Container  -->
+	</div>
+	<!-- End Of Top Section -->
+	<div id="power_middle_section">
+	  <div class="power_container">
+	    <div id="power_content">
+	      <div class="power_3_col left_section">
+			<form action='/ComReasult/'  method="get" name="form1">
+    			<h5>请选择所要对比的产品及版本：</h5>
+    			<div>
+    				<select name="product" size="1" onChange="getPro()">
+    				<option value="">请选择所要对比的版本</option>
+    				<option value="mi2s">Mi2s</option>
+    				<option value="mi2a">Mi2a</option>
+    				<option value="mi3">Mi3</option>
+    				</SELECT>
+				</div>
+		
+				<div>
+					<SELECT NAME="version0" size="1">   
+					<OPTION VALUE="0">请选择所对比的版本 </OPTION>
+					</SELECT>		
+				</div>
+        		<div>
+					<SELECT NAME="version1" size="1">   
+					<OPTION VALUE="0">请选择所对比的版本 </OPTION>
+					</SELECT>		
+				</div>
+			<input type="submit" value="Search">
+    	</form>
+    </div>
+    <div class="power_3_col right_section">
+	        <h1>{{product}}的所选版本的对比结果如下</h1>
+	        <div id="chartdiv" style="width: 600px; height: 400px;"></div>
+        	<div id="chartdiv" style="margin-left:15px; margin-top:10px;">
+            	<input type="radio" checked="true" name="group" id="rb1" onclick="setDepth()">2D
+            	<input type="radio" name="group" id="rb2" onclick="setDepth()">3D</div>
+	</div>
+	<div class="cleaner"></div>
+	    </div>
+	  </div>
+	  <!-- End Of Container  -->
+	</div>
+	<!-- End Of Middle Section  -->
+	<div id="power_buttom_section">
+	  <div class="power_container">
+	    <div class="power_bottom_panel">
+	      <div class="power_3_col bottom_left">
+	        <h2>声明</h2>
+	        <p>个人使用，非对外开放。</p>
+	        <div id="power_footer">
+	          <div id="power_footer_top"></div>
+	          <div id="power_footer_mid"> Copyright &copy; 2010 <a>BSPtest<br /></div>
+	          <div id="power_footer_bottom"></div>
+	        </div>
+	      </div>
+		  <div class="cleaner"></div>
+	    </div>
+	  </div>
+	  <!-- End Of Container  -->
+	</div>
+	<!-- End Of Bottom Section  -->
+	</body>
+</html>		   
+
+
+<body>
+	<form action='/ComReasult/'  method="get" name="form1">
+    	<h5>请选择所要对比的产品及版本：</h5>
+    	<div>
+    	<select name="product" size="1" onChange="getPro()">
+    		<option value="">请选择所要对比的版本</option>
+    		<option value="mi2s">Mi2s</option>
+    		<option value="mi2a">Mi2a</option>
+    		<option value="mi3">Mi3</option>
+    		
+		</SELECT>
+		</div>
+		
+		<div>
+		<SELECT NAME="version0" size="1">   
+			<OPTION VALUE="0">请选择所对比的版本 </OPTION>
+		</SELECT>		
+		</div>
+        <div>
+		<SELECT NAME="version1" size="1">   
+			<OPTION VALUE="0">请选择所对比的版本 </OPTION>
+		</SELECT>		
+		</div>
+		<input type="submit" value="Search">
+    </form>
+    
+</body>
+</html>

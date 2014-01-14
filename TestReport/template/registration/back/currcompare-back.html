@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test Report Result</title>
+<link rel="stylesheet" href="/medias/power_style.css" type="text/css" />
+
+    <script src="/medias/amcharts/amcharts.js" type="text/javascript"></script>          
+    <script type="text/javascript">
+        var chart;
+        var chartData = [{
+				variety: "2G电话",
+				"{{version0}}": {{result0.Item1}},
+				"{{version1}}": {{result1.Item1}}
+			}, {
+				variety: "3G电话",
+				"{{version0}}": {{result0.Item2}},
+				"{{version1}}": {{result1.Item2}}
+			}, {
+				variety: "亮屏待机",
+				"{{version0}}": {{result0.Item3}},
+				"{{version1}}": {{result1.Item3}}
+			}, {
+				variety: "3G待机",
+				"{{version0}}": {{result0.Item4}},
+				"{{version1}}": {{result1.Item4}}
+			}, {
+				variety: "无卡待机",
+				"{{version0}}": {{result0.Item5}},
+				"{{version1}}": {{result1.Item5}}
+			}, {
+				variety: "关屏待机",
+				"{{version0}}": {{result0.Item6}},
+				"{{version1}}": {{result1.Item6}}
+			}, {
+				variety: "打开WLAN",
+				"{{version0}}": {{result0.Item7}},
+				"{{version1}}": {{result1.Item7}}
+			}, {
+				variety: "WLAN&2.4G",
+				"{{version0}}": {{result0.Item8}},
+				"{{version1}}": {{result1.Item8}}
+			}, {
+				variety: "WLAN&5G",
+				"{{version0}}": {{result0.Item9}},
+				"{{version1}}": {{result1.Item9}}
+			},{
+				variety: "打开BT",
+				"{{version0}}": {{result0.Item10}},
+				"{{version1}}": {{result1.Item10}}
+			},{
+				variety: "连接BT",
+				"{{version0}}": {{result0.Item11}},
+				"{{version1}}": {{result1.Item11}}
+			},{
+				variety: "本地视频播放",
+				"{{version0}}": (({{result0.Item12}}/10).toFixed(2)),
+				"{{version1}}": (({{result1.Item12}}/10).toFixed(2))
+			},{
+				variety: "游戏",
+				"{{version0}}": (({{result0.Item13}}/10).toFixed(2)),
+				"{{version1}}": (({{result1.Item13}}/10).toFixed(2))
+			},{
+				variety: "主屏滑动",
+				"{{version0}}": (({{result0.Item14}}/10).toFixed(2)),
+				"{{version1}}": (({{result1.Item14}}/10).toFixed(2))
+			},{
+				variety: "联系人滑动",
+				"{{version0}}": (({{result0.Item15}}/10).toFixed(2)),
+				"{{version1}}": (({{result1.Item15}}/10).toFixed(2))
+			},{
+				variety: "浏览器滑动",
+				"{{version0}}": (({{result0.Item16}}/10).toFixed(2)),
+				"{{version1}}": (({{result1.Item16}}/10).toFixed(2))
+			},{
+				variety: "开防抖录视频",
+				"{{version0}}": (({{result0.Item17}}/10).toFixed(2)),
+				"{{version1}}": (({{result1.Item17}}/10).toFixed(2))
+			},{
+				variety: "关防抖录视频",
+				"{{version0}}": (({{result0.Item18}}/10).toFixed(2)),
+				"{{version1}}": (({{result1.Item18}}/10).toFixed(2))
+			},{
+				variety: "播放录制视频",
+				"{{version0}}": (({{result0.Item19}}/10).toFixed(2)),
+				"{{version1}}": (({{result1.Item19}}/10).toFixed(2))
+			},{
+				variety: "音乐",
+				"{{version0}}": {{result0.Item20}},
+				"{{version1}}": {{result1.Item20}}
+			},{
+				variety: "录音",
+				"{{version0}}": {{result0.Item21}},
+				"{{version1}}": {{result1.Item21}}
+			}];
+			
+            AmCharts.ready(function () {
+                // SERIAL CHART  
+                chart = new AmCharts.AmSerialChart();
+                //chart.pathToImages = "../amcharts/images/";
+                chart.dataProvider = chartData;
+                chart.categoryField = "variety";
+                chart.startDuration = 1;
+
+                // AXES
+                // category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.gridPosition = "start";
+
+                // value
+                // in case you don't want to change default settings of value axis,
+                // you don't need to create it, as one value axis is created automatically.
+                //var valueAxis = new AmCharts.ValueAxis();
+				//valueAxis.title = "续航测试"
+                
+				// GRAPHS
+                // column graph
+                var graph1 = new AmCharts.AmGraph();
+                graph1.type = "column";
+                graph1.title = "{{version0}}";
+                graph1.valueField = "{{version0}}";
+                graph1.lineAlpha = 0;
+                graph1.fillAlphas = 1;
+                graph1.balloonText = "{{version0}}中[[category]]的平均耗电电流为:[[value]]*10ma";
+                chart.addGraph(graph1);
+
+                // line
+                var graph2 = new AmCharts.AmGraph();
+                graph2.type = "line";
+                graph2.title = "{{version1}}";
+                graph2.valueField = "{{version1}}";
+                graph2.lineThickness = 2;
+                graph2.bullet = "round";
+				graph2.balloonText = "{{version1}}中[[category]]的平均耗电电流为: [[value]]ma";
+                chart.addGraph(graph2);
+
+                // LEGEND                
+                var legend = new AmCharts.AmLegend();
+                chart.addLegend(legend);
+
+                // WRITE
+                chart.write("chartdiv");
+            });
+    //定义了产品的二维数组，里面的顺序跟省份的顺序是相同的。通过selectedIndex获得省份的下标值来得到相应的城市数组   
+	var produ=[   
+		{{mi2slist|safe}},   
+		{{mi2alist|safe}}, 
+		{{mi3list|safe}}
+		]; 
+	function getPro(){   
+		//获得产品下拉框的对象   
+		var sltproduct=document.form1.product;   
+		//获得版本下拉框的对象   
+		var sltversion0=document.form1.version0;
+		//获得版本下拉框的对象   
+		var sltversion1=document.form1.version1;   
+		//得到对应产品的版本数组   
+		var proversion=produ[sltproduct.selectedIndex - 1];   
+		//清空版本下拉框，仅留提示选项   
+		sltversion0.length=1;  
+		sltversion1.length=1;  
+		//将产品数组中的值填充到版本下拉框中   
+		for(var i=0;i<proversion.length;i++){   
+			sltversion0[i+1]=new Option(proversion[i],proversion[i]);
+			sltversion1[i+1]=new Option(proversion[i],proversion[i]);   
+		}   
+	}   
+	</script>
+</head>
+<body>
+	<div id="power_top_section">
+	  <div class="power_container">
+	    <div id="power_header">
+	      <div id="power_logo_area">
+	        <h2>Test Report</h2>
+	      </div>
+	      <div id="power_header_right">
+	        <h2></h2>
+	        <p></p>
+	      </div>
+	      <div class="cleaner"></div>
+	      <div id="power_menu">
+	        <ul>
+	          <li class="current"> <a href='/home/'>首页</a>
+	            <p>start here</p>
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li>
+	          
+	          </li>
+	          <li class="last">
+	          </li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+	  <!-- End Of Container  -->
+	</div>
+	<!-- End Of Top Section -->
+	<div id="power_middle_section">
+	  <div class="power_container">
+	    <div id="power_content">
+	      <div class="power_3_col left_section">
+	      	<div>
+		        
+			    <form action="/currsearch/" method="get">
+			    	<h2>请选择对应产品：</h2>
+			    	<div class="radio">
+					<INPUT TYPE=radio NAME=product id="mi2s" VALUE=mi2s/>MI 2S<br>
+					<INPUT TYPE=radio NAME=product id="mi2a" VALUE=mi2a/>MI 2A<br>
+					<INPUT TYPE=radio NAME=product id="mi3" VALUE=mi3/>MI 3<br>
+					</div>
+			        <input type="submit" value="Search">
+			    </form>
+			   </div>
+			   <div>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+			   </div>
+			   <div>
+			   		<form action='/currcompare/'  method="get" name="form1">
+    				<h5>请选择所要对比的产品及版本：</h5>
+    			<div>
+    				<select name="product" size="1" onChange="getPro()">
+    				<option value="">请选择所要对比的版本</option>
+    				<option value="mi2s">Mi2s</option>
+    				<option value="mi2a">Mi2a</option>
+    				<option value="mi3">Mi3</option>
+    				</SELECT>
+				</div>
+				<div>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+			   </div>
+				<div>
+					<SELECT NAME="version0" size="1">   
+					<OPTION VALUE="0">请选择所对比的版本 </OPTION>
+					</SELECT>		
+				</div>
+				<div>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+			   </div>
+        		<div>
+					<SELECT NAME="version1" size="1">   
+					<OPTION VALUE="0">请选择所对比的版本 </OPTION>
+					</SELECT>		
+				</div>
+				<div>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+			   </div>
+			<input type="submit" value="Search">
+    	</form>
+		       </div>			   
+	      </div>
+	      <div class="power_3_col right_section">
+	        <h1>最新更新数据</h1>
+	        {% if error = True %}
+			    <h2 style="color: red;">{{info}}</h2>
+			{% endif %}
+	        <p>{{product}}的{{variety}}的最近10个版本的测试结果</p>
+	        <div id="chartdiv" style="width: 100%; height: 580px;"></div>
+	      </div>
+	      <div class="cleaner"></div>
+	    </div>
+	  </div>
+	  <!-- End Of Container  -->
+	</div>
+	<!-- End Of Middle Section  -->
+	<div id="power_buttom_section">
+	  <div class="power_container">
+	    <div class="power_bottom_panel">
+	      <div class="power_3_col bottom_left">
+	        <h2>声明</h2>
+	        <p>个人使用，非对外开放。</p>
+	        <div id="power_footer">
+	          <div id="power_footer_top"></div>
+	          <div id="power_footer_mid"> Copyright &copy; 2010 <a>BSPtest<br /></div>
+	          <div id="power_footer_bottom"></div>
+	        </div>
+	      </div>
+		  <div class="cleaner"></div>
+	    </div>
+	  </div>
+	  <!-- End Of Container  -->
+	</div>
+	<!-- End Of Bottom Section  -->
+	</body>
+</html>

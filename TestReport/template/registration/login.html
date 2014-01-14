@@ -1,0 +1,22 @@
+<html> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<body style='background-color:#CCFFFF'>  
+    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    	{% csrf_token %}
+    	<div style="text-align:center">
+	    	<table border="1" cellpadding="3" cellspacing="0" style="width: 60%;margin:auto">
+	    	<tr>
+	    	    <td>{{ form.username.label_tag }}</td>
+	    	    <td>{{ form.username }}</td>
+	    	</tr>
+	    	<tr>
+	    	    <td>{{ form.password.label_tag }}</td>
+	    	    <td>{{ form.password }}</td>
+	    	</tr>
+	    	</table>
+	    	<input type="submit" value="login" />
+	    	<input type="hidden" name="next" value="{{ next|escape }}" />
+	    </div>
+    </form>  
+</body>  
+</html> 

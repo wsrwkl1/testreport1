@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+	<series>
+		<value xid="3.9.15">MI3_MIUI3.9.15</value>
+		<value xid="3.9.13">MI3_MIUI3.9.13</value>
+		<value xid="3.8.22">MI3_MIUI3.8.22</value>
+	</series>
+	<graphs>
+		<graph gid="Music" title="Music">
+			<value xid="3.9.15">2</value>
+			<value xid="3.9.13">3</value>
+			<value xid="3.8.22">2</value>			
+		</graph>
+		<graph gid="Game" title="Game">
+			<value xid="3.9.15">14</value>
+			<value xid="3.9.13">14</value>
+			<value xid="3.8.22">15</value>			
+		</graph>
+		<graph gid="PlayerVideo" title="PlayerVideo">
+			<value xid="3.9.15">5</value>
+			<value xid="3.9.13">5</value>	
+			<value xid="3.8.22">4</value>		
+		</graph>		
+		<graph gid="ReadBook" title="ReadBook">
+			<value xid="3.9.15">4</value>
+			<value xid="3.9.13">3</value>
+			<value xid="3.8.22">6</value>		
+		</graph>		    		
+		<graph gid="Weibo" title="Weibo">	
+			<value xid="3.9.15">13</value>
+			<value xid="3.9.13">14</value>
+			<value xid="3.8.22">17</value>		
+		</graph>
+		<graph gid="CallMo" title="CallMo">
+			<value xid="3.9.15">3</value>
+			<value xid="3.9.13">2</value>
+			<value xid="3.8.22">3</value>			
+		</graph>
+		<graph gid="Brower" title="Brower">
+			<value xid="3.9.15">8</value>
+			<value xid="3.9.13">7</value>
+			<value xid="3.8.22">12</value>			
+		</graph>
+		<graph gid="Camera" title="Camera">
+			<value xid="3.9.15">12</value>
+			<value xid="3.9.13">12</value>
+			<value xid="3.8.22">18</value>			
+		</graph>
+		<graph gid="Remain" title="Remain">
+			<value xid="3.9.15">39</value>
+			<value xid="3.9.13">40</value>
+			<value xid="3.8.22">21</value>			
+		</graph>
+	</graphs>
+</chart>

@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test Report Result</title>
+<link rel="stylesheet" href="/medias/power_style.css" type="text/css" />
+<script src="/medias/amcharts/amcharts.js" type="text/javascript"></script>          
+    <script type="text/javascript">
+        var chart;
+        var legend;
+		{% if selecttemp = "BatteryLife" %}
+			var chartData = [{
+            	variety: "Game",
+            	value: {{ Game }}
+	        }, {
+	            variety: "Music",
+	            value: {{Music}}
+	        }, {
+	            variety: "PlayVideo",
+	            value: {{PlayVideo}}
+	        }, {
+	            variety: "ReadBook",
+	            value: {{ReadBook}}
+	        }, {
+	            variety: "WeiBO",
+	            value: {{WeiBO}}
+	        }, {
+	            variety: "CallMO",
+	            value: {{CallMO}}
+	        }, {
+	            variety: "Brower",
+	            value: {{Brower}}
+	        },{
+	            variety: "Camera",
+	            value: {{Camera}}
+	        },{
+	            variety: "Remain",
+	            value: {{Remain}}
+	        }];
+	
+	        AmCharts.ready(function () {
+	            // PIE CHART
+	            chart = new AmCharts.AmPieChart();
+	            chart.dataProvider = chartData;
+	            chart.titleField = "variety";
+	            chart.valueField = "value";
+	            chart.outlineColor = "#FFFFFF";
+	            chart.outlineAlpha = 0.8;
+	            chart.outlineThickness = 2;
+	
+	            // WRITE
+	            chart.write("chartdiv");
+	        });
+	                
+	        function setVer(){				
+				id=document.getElementById("version");
+					if(id.checked==true){
+						bversion.VALUE=id.VALUE;
+					}else{
+						bversion.VALUE=None;
+					}				
+			}       
+		{% endif %}
+		{% if selecttemp = "Current" %}
+			var chartData = [{
+                variety: "2G网络打电话",
+                value: {{Item1}}
+            }, {
+                variety: "3G网络打电话",
+                value: {{Item2}}
+            }, {
+                variety: "亮屏飞行模式待机",
+                value: {{Item3}}
+            }, {
+                variety: "3G网络待机",
+                value: {{Item4}}
+            }, {
+                variety: "无SIM卡待机",
+                value: {{Item5}}
+            }, {
+                variety: "飞行模式待机",
+                value: {{Item6}}
+            }, {
+                variety: "打开WLAN不联网",
+                value: {{Item7}}
+            }, {
+                variety: "打开WLAN连接2.4G网络",
+                value: {{Item8}}
+            }, {
+                variety: "打开WLAN连接5G网络",
+                value: {{Item9}}
+            }, {
+                variety: "打开BT不连外设",
+                value: {{Item10}}
+            }, {
+                variety: "打开BT连接外设",
+                value: {{Item11}}
+            }, {
+                variety: "播放本地视频",
+                value: {{Item12}}
+            }, {
+                variety: "游戏（切水果）",
+                value: {{Item13}}
+            }, {
+                variety: "主屏滑动",
+                value: {{Item14}}
+            }, {
+                variety: "联系人滑动",
+                value: {{Item15}}
+            }, {
+                variety: "浏览器滑动",
+                value: {{Item16}}
+            },{
+                variety: "打开防抖录制视频",
+                value: {{Item17}}
+            },{
+                variety: "关闭防抖录制视频",
+                value: {{Item18}}
+            },{
+                variety: "播放录制视频",
+                value: {{Item19}}
+            },{
+                variety: "播放音乐",
+                value: {{Item20}}
+            },{
+                variety: "录音",
+                value: {{Item21}}
+            }];
+			
+            AmCharts.ready(function () {
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+                chart.dataProvider = chartData;
+                chart.categoryField = "variety";
+                // this single line makes the chart a bar chart, 
+                // try to set it to false - your bars will turn to columns                
+                chart.rotate = true;
+                // the following two lines makes chart 3D
+                chart.depth3D = 20;
+                chart.angle = 30;
+
+                // AXES
+                // Category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.gridPosition = "start";
+                categoryAxis.axisColor = "#DADADA";
+                categoryAxis.fillAlpha = 1;
+                categoryAxis.gridAlpha = 0;
+                categoryAxis.fillColor = "#FAFAFA";
+
+                // value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.axisColor = "#DADADA";
+                valueAxis.title = "value in millions, USD";
+                valueAxis.gridAlpha = 0.1;
+                chart.addValueAxis(valueAxis);
+
+                // GRAPH
+                var graph = new AmCharts.AmGraph();
+                graph.title = "Value";
+                graph.valueField = "value";
+                graph.type = "column";
+                graph.balloonText = "[[category]]项目平均耗电为:[[value]]ma";
+                graph.lineAlpha = 0;
+                graph.fillColors = "#bf1c25";
+                graph.fillAlphas = 1;
+                chart.addGraph(graph);
+
+                // WRITE
+                chart.write("chartdiv");
+            });
+		{% endif %}
+	</script>
+	
+</head>
+<body>
+<div id="power_top_section">
+  <div class="power_container">
+    <div id="power_header">
+      <div id="power_logo_area">
+        <h2>Test Report</h2>
+      </div>
+      <div id="power_header_right">
+        <h2></h2>
+        <p></p>
+      </div>
+      <div class="cleaner"></div>
+      <div id="power_menu">
+        <ul>
+          <li class="current"> <a href=''>首页</a>
+            <p>start here</p>
+          </li>
+          <li>
+          
+          </li>
+          <li>
+          
+          </li>
+          <li>
+          
+          </li>
+          <li>
+          
+          </li>
+          <li>
+          
+          </li>
+          <li>
+          
+          </li>
+          <li class="last"> 
+          	
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Of Container  -->
+</div>
+<!-- End Of Top Section -->
+<div id="power_middle_section">
+  <div class="power_container">
+    <div id="power_content">
+      <div class="power_3_col left_section">
+        <h1>测试种类</h1>
+        <h2>电流测试</h2>
+        <p>主要测试内容为：在不同条件下的手机的耗电电流大小。模拟的条件包括，打电话，待机，飞行模式，Wlan，BT，播放视频，玩游戏，听音乐等情况 <a href='/blinfo/'>详情点击</a></p>
+        <h2>电池续航测试</h2>
+        <p>模拟 Zealer中国中的测评条件，测试每个模块的耗电量，并统计最后的剩余电量，测试的条件为：游戏0.5小时，音乐播放1小时，电子书0.5小时，微博1小时，通话0.5小时，网页浏览0.5小时，拍照0.5小时，统计剩余电量。<a href='/currinfo/'>详情点击</a></p>
+        <h2>XX测试</h2>
+        <p>待添加的测试内容<a href='//'></a></p>
+      </div>
+      <div class="power_3_col right_section">
+        <h1>最新更新数据</h1>
+        {% if selecttemp = "BatteryLife" %}
+        	<p>{{product}}在{{Version}}版本上的续航测试结果如下图：</p>
+        {% endif %}
+        {% if selecttemp = "Current" %}
+        	<p>{{product}}在{{Version}}版本上的电流测试果如下图：</p>
+        {% endif %}
+        <div id="chartdiv" style="width: 100%; height: 580px;"></div>
+      </div>
+      <div class="cleaner"></div>
+    </div>
+  </div>
+  <!-- End Of Container  -->
+</div>
+<!-- End Of Middle Section  -->
+<div id="power_buttom_section">
+  <div class="power_container">
+    <div class="power_bottom_panel">
+      <div class="power_3_col bottom_left">
+        <h2>声明</h2>
+        <p>个人使用，非对外开放。</p>
+        <div id="power_footer">
+          <div id="power_footer_top"></div>
+          <div id="power_footer_mid"> Copyright &copy; 2010 <a>BSPtest<br /></div>
+          <div id="power_footer_bottom"></div>
+        </div>
+      </div>
+	  <div class="cleaner"></div>
+    </div>
+  </div>
+  <!-- End Of Container  -->
+</div>
+<!-- End Of Bottom Section  -->
+</body>
+</html>

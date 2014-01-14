@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block script %}
+<script type="text/javascript">{% endblock %}
+{% block middle_container%}
+<div id="power_middle_section">
+	<div class="power_container">
+		<div id="power_content">
+			<div class="power_3_col left_section">
+				<div>
+					<form action="/blsearch/" method="get">
+						<h2>请选择对应产品：</h2>
+						<div class="radio" id="product0">
+						<INPUT TYPE=radio NAME=product id="mi2s" VALUE=mi2s/>MI 2S<br>
+						<INPUT TYPE=radio NAME=product id="mi2a" VALUE=mi2a/>MI 2A<br>
+						<INPUT TYPE=radio NAME=product id="mi3w" VALUE=mi3w/>MI 3W<br>
+						<INPUT TYPE=radio NAME=product id="mi3td" VALUE=mi3td/>MI 3TD<br>
+						</div>
+						<input type="submit" value="Search">
+					</form>
+				</div>
+				<div>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+				   <p></p>
+				</div>
+				<div>
+					<form action='/blComReasult/'  method="get" name="form1">
+					<h5>请选择所要对比的产品及版本：</h5>
+					<div>
+						<SELECT NAME="product0" size="1" onChange="getPro()">   
+						<OPTION VALUE="0">请选择所要第一个产品 </OPTION>
+						<option value="mi2s">Mi2s</option>
+						<option value="mi2a">Mi2a</option>
+						<option value="mi3w">Mi3-W</option>
+						<option value="mi3td">Mi3-TD</option>
+						</SELECT>
+						<SELECT NAME="version0" size="1">
+						<OPTION VALUE="0">请选择所要对应的版本 </OPTION>
+						</SELECT>
+					</div>
+					<div>
+					   <p></p>
+					   <p></p>
+					   <p></p>
+					   <p></p>
+					</div>
+					<div>
+						<SELECT NAME="product1" size="1" onChange="getPro()">   
+						<OPTION VALUE="0">请选择所要第二个产品 </OPTION>
+						<option value="mi2s">Mi2s</option>
+						<option value="mi2a">Mi2a</option>
+						<option value="mi3w">Mi3-W</option>
+						<option value="mi3td">Mi3-TD</option>
+						</SELECT>
+						<SELECT NAME="version1" size="1">   
+						<OPTION VALUE="0">请选择所要对比的版本 </OPTION>
+						</SELECT>		
+					</div>
+					<input type="submit" value="Search">
+					</form>
+					<div>
+					   <p>PS：对比时请选择电池容量相同的产品进行比较，此处设定为：MI2S只能与MI2S比较，2A只能与2A比较，</p>
+					</div>
+				</div>			   
+			</div>
+			
+			{% block middle_right_section%}{% endblock %}
+			<div class="cleaner"></div>
+	   	</div>
+	</div>
+	<!-- End Of Container  -->
+</div>
+<!-- End Of Middle Section  -->
+{% endblock %}
