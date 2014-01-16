@@ -5,7 +5,7 @@ from database import executsql, QueryVersionAllTable,amcharts,QueryVersionSignal
 from getselectedinfo import GetLatestInfoAllTable, GetLatestInfoSignalTable,getcompareinfo
 from getvariety import getvar
 
-@login_required(login_url='/accounts/login')
+#@login_required(login_url='/accounts/login')
 def home(self):
     dic = GetLatestInfoAllTable(self)
     return render_to_response('index.html',dic)
@@ -15,7 +15,7 @@ def home(self):
 #info_dic 所查询的表中的所有信息
 #template 页需要的一些变量
 ########################################################
-@login_required(login_url='/accounts/login') 
+#@login_required(login_url='/accounts/login') 
 def blinfo(self):
     t = 'bl'
     variety = getvar(t)
@@ -28,7 +28,7 @@ def blinfo(self):
     result_dic =dict(info_dic, **temp_dic) 
     return render_to_response('blinfo.html',result_dic)
 
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def blsearch(request):
     error = False
     t = 'bl'
@@ -56,7 +56,7 @@ def blsearch(request):
         return render_to_response('blsearch.html',result_dic)
     return render_to_response('blinfo.html', {'error': error,'info':info})
 
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def blComReasult(request):
     
     t = 'bl'
@@ -70,7 +70,7 @@ def blComReasult(request):
     else:
         return render_to_response('blcompare.html',result_dic)
 
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def currinfo(self):
     t = 'current'
     variety = getvar(t)
@@ -83,7 +83,7 @@ def currinfo(self):
     result_dic = dict(temp_dic,**all_version_dic)
     return render_to_response('currinfo.html',result_dic)
 
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def currsearch(request):
     t = 'current'
     variety = getvar(t)
@@ -110,7 +110,7 @@ def currsearch(request):
         return render_to_response('currsearch.html',result_dic)
     return render_to_response('currinfo.html', {'error': error,'info':info})
 
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def currcompare(request):
     t = 'current'
     all_version_dic = QueryVersionAllTable(t)
