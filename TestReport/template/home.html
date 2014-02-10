@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %} Test Report Result {% endblock %} 
+
+{% block script %}
+<script src="/medias/jsfolder/marquee.js" type="text/javascript"></script>
+<script src="/medias/amcharts/amcharts.js" type="text/javascript"></script> 
+<script src="/medias/jsfolder/CameraCtsCompare.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block middle_container%}
+<div id="power_middle_section">
+  <div class="power_container">
+    <div id="power_content">
+      <div class="power_2_col left_home_section">
+        <h1>Camera CTS</h1>
+        <h2>电池续航测试</h2>
+        <div id="chartdiv" class="left_top_section left_core"></div>
+      </div>
+      <div class="power_2_col right_home_section">
+      	<h1>Critical Issue</h1>
+      	<h2></h2>
+        <div id="marq1" class="right_top_section right_core">
+        	<a href="javascript:">jQuery 无刷新切换CSS样式表改变风格</a><br>
+	  		<a href="javascript:">VC++生成随机数并快速排序的算法</a><br>
+	  		<a href="javascript:">基于jQuery的图片滚动切换插件</a><br>
+	  		<a href="javascript:">联想头部大横幅Flash广告附源文件</a><br>
+	  		<a href="javascript:">VB开发的Eclipse编程软件完整版</a><br>
+	  		<a href="javascript:">bQuery 无刷新切换CSS样式表改变风格</a><br>
+	  		<a href="javascript:">nC++生成随机数并快速排序的算法</a><br>
+	  		<a href="javascript:">a于jQuery的图片滚动切换插件</a><br>
+	  		<a href="javascript:">d想头部大横幅Flash广告附源文件</a><br>
+	  		<a href="javascript:">eB开发的Eclipse编程软件完整版</a><br>
+        </div>
+      </div>
+      <div class="cleaner"></div>
+    </div>
+  </div>
+  <!-- End Of Container  -->
+</div>
+<!-- End Of Middle Section  -->
+{% endblock %}

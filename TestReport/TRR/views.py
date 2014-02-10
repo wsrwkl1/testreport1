@@ -6,9 +6,12 @@ from getselectedinfo import GetLatestInfoAllTable, GetLatestInfoSignalTable,getc
 from getvariety import getvar
 
 #@login_required(login_url='/accounts/login')
-def home(self):
+def index(self):
     dic = GetLatestInfoAllTable(self)
     return render_to_response('index.html',dic)
+
+def home(self):
+    return render_to_response('home.html')
 
 #######################################################
 #variety 测试种类

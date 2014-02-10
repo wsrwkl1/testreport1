@@ -10,8 +10,8 @@ body {
 	line-height: 1.5em;
 	width: 100%;
 	display: table;
-	background: #000000;
-	color: #99CCFF;
+	background: #828282;
+	color: #CC0033;
 }
 
 a:link, a:visited {	color: #CCFFFF; text-decoration: underline; }
@@ -19,14 +19,14 @@ a:active, a:hover { color: #CCFF33; text-decoration: none; }
 
 p {
 	font-size: 13px;
-	color: #99CCFF;
+	color: #000000;
 	text-align: justify;
 	margin: 0 0 20px 0;		
 }
 
 h1 {
 	font-size: 28px;
-	color: #99CCFF;
+	color: #000000;
 	font-weight: normal;
 	margin: 0 0 20px 0;
 }
@@ -39,7 +39,7 @@ h2 {
 
 h3 {
 	font-size: 25px;
-	color: #99CCFF;
+	color: #999999;
 	margin: 0 0 20px 0;
 }
 
@@ -65,7 +65,7 @@ h4 {
 
 #power_header {
 	width: 960px;
-	height: 257px;
+	height: 120px;
 	padding: 1px 0 0 0;
 }
 
@@ -85,7 +85,7 @@ h4 {
 
 #power_logo_area p {
 	font-size: 19px;
-	color: #99CCFF;
+	color: #999999;
 	font-family: "Times New Roman", Times, serif;
 	margin: 0 0 0 50px;
 }
@@ -105,7 +105,7 @@ h4 {
 
 #power_header_right p {
 	margin: 0;
-	color: #99CCFF;
+	color: #999999;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 18px;
 	line-height: 1.3em;
@@ -116,6 +116,7 @@ h4 {
 	width: 960px;
 	height: 103px;
 	padding: 0 0 0 0;
+	background: #828282;
 	margin: 14px 0 0 0;
 }
 
@@ -167,17 +168,18 @@ h4 {
 	background: url(images/power_menu_current.png) top  repeat-x;
 }
 
+/* #999999 fullwith #999999 except picture */ 
 #power_middle_section {
-	background: url(images/power_middle_bg.jpg) #16416e repeat-x;
+	background: url(images/power_middle_bg.jpg) #999999 repeat-x;
 	border-bottom: 1px solid #007dff;
 }
 
 #power_buttom_section {
-	background: url(images/power_buttom_bg.jpg) #000101 repeat-x top;
+	background: url(images/power_buttom_bg.jpg) #999999 repeat-x top;
 }
 
 #power_right_top {
-	background: url(images/bl_midle_right_top.png) #000101 repeat-x top;
+	background: url(images/bl_midle_right_top.png) #999999 repeat-x top;
 }
 
 #power_content {
@@ -188,6 +190,48 @@ h4 {
 	float: left;	
 	width: 200px;
 	padding: 20px 0;	
+}
+
+.power_2_col {
+	float: left;	
+	width: 428px;
+	padding: 20px 0;	
+}
+
+.right_home_section {
+	background: url(images/power_shape_right.png) repeat-y left;
+	min-height: 580px;
+	padding: 20px 0 20px 20px;
+}
+
+.left_home_section {
+	background: url(images/power_shape_left.png) repeat-y right;
+	min-height: 580px;
+	padding: 20px 20px 20px 0;
+}
+
+.left_top_section {
+	border:1px solid #999999; 
+	width:428px;
+	padding:20px 0px; 
+}
+
+.right_top_section {
+	border:1px solid #999999; 
+	width:428px;
+	padding:20px 0px; 
+}
+
+.left_core{
+	width: 420px;
+	height:200px;
+	overflow:hidden;
+}
+
+.right_core{
+	width: 420px;
+	height:200px;
+	overflow:hidden;
 }
 
 .middle {
@@ -224,7 +268,7 @@ h4 {
 }
 
 .power_section_2 {
-	width: 275px;
+	width: 480px;
 	background: url(images/power_section_1.png) no-repeat top;
 	margin: 20px 0 0 -10px;
 	padding: 10px;
